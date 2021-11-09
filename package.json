@@ -9,7 +9,8 @@
         "prod": "npm run production",
         "production": "mix --production",
         "lint": "node_modules/.bin/eslint --ext .js,.vue --fix --ignore-path .gitignore resources/ --quiet",
-        "prettify": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue} --check"
+        "prettify": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue} --check",
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@inertiajs/inertia": "^0.10.0",
@@ -29,7 +30,9 @@
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-promise": "^5.1.1",
         "eslint-plugin-vue": "^8.0.3",
+        "husky": "^7.0.4",
         "laravel-mix": "^6.0.6",
+        "lint-staged": "^11.2.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "postcss-import": "^12.0.1",
@@ -39,5 +42,19 @@
         "tailwindcss": "^2.0.1",
         "vue": "^3.2.21",
         "vue-loader": "^16.1.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.php": [
+            "composer lint:fix"
+        ],
+        "*.{js,vue}": [
+            "yarn lint",
+            "yarn prettify"
+        ]
     }
 }
