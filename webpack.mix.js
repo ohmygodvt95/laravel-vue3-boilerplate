@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+let productionSourceMaps = false;
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,7 +11,20 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/js/app.js', 'public/js').vue()
+  .postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+  ])
+  .webpackConfig(require('./webpack.config'))
+  .sourceMaps(productionSourceMaps);
+
+if (mix.inProduction()) {
+  mix.version();
+} else {
+  mix.s
+  mix.browserSync({
+    proxy: 'localhost',
+    open: false,
+  });
+}
