@@ -6,16 +6,16 @@
       <jet-authentication-card-logo />
     </template>
 
-    <div class="mb-4 text-sm text-gray-600">
+    <div class="tw-mb-4 tw-text-sm tw-text-gray-600">
       Forgot your password? No problem. Just let us know your email address and we will email you a
       password reset link that will allow you to choose a new one.
     </div>
 
-    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+    <div v-if="status" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
       {{ status }}
     </div>
 
-    <jet-validation-errors class="mb-4" />
+    <jet-validation-errors class="tw-mb-4" />
 
     <form @submit.prevent="submit">
       <div>
@@ -24,13 +24,13 @@
           id="email"
           v-model="form.email"
           type="email"
-          class="mt-1 block w-full"
+          class="tw-mt-1 tw-block tw-w-full"
           required
           autofocus
         />
       </div>
 
-      <div class="flex items-center justify-end mt-4">
+      <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
         <jet-button :class="{'opacity-25': form.processing}" :disabled="form.processing">
           Email Password Reset Link
         </jet-button>

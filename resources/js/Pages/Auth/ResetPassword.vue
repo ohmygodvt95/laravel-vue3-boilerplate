@@ -15,38 +15,38 @@
           id="email"
           v-model="form.email"
           type="email"
-          class="mt-1 block w-full"
+          class="tw-mt-1 tw-block tw-w-full"
           required
           autofocus
         />
       </div>
 
-      <div class="mt-4">
+      <div class="tw-mt-4">
         <jet-label for="password" value="Password" />
         <jet-input
           id="password"
           v-model="form.password"
           type="password"
-          class="mt-1 block w-full"
+          class="tw-mt-1 tw-block tw-w-full"
           required
           autocomplete="new-password"
         />
       </div>
 
-      <div class="mt-4">
+      <div class="tw-mt-4">
         <jet-label for="password_confirmation" value="Confirm Password" />
         <jet-input
           id="password_confirmation"
           v-model="form.password_confirmation"
           type="password"
-          class="mt-1 block w-full"
+          class="tw-mt-1 tw-block tw-w-full"
           required
           autocomplete="new-password"
         />
       </div>
 
-      <div class="flex items-center justify-end mt-4">
-        <jet-button :class="{'opacity-25': form.processing}" :disabled="form.processing">
+      <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
+        <jet-button :class="{'tw-opacity-25': form.processing}" :disabled="form.processing">
           Reset Password
         </jet-button>
       </div>

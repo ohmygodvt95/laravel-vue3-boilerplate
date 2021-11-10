@@ -135,7 +135,7 @@
                       class="
                         tw-flex tw-text-sm tw-border-2 tw-border-transparent tw-rounded-full
                         focus:tw-outline-none focus:tw-border-gray-300
-                        transition
+                        tw-transition
                       "
                     >
                       <img
@@ -226,10 +226,10 @@
                 "
                 @click="showingNavigationDropdown = !showingNavigationDropdown"
               >
-                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <svg class="tw-h-6 tw-w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path
                     :class="{
-                      hidden: showingNavigationDropdown,
+                      'tw-hidden': showingNavigationDropdown,
                       'tw-inline-flex': !showingNavigationDropdown,
                     }"
                     stroke-linecap="round"
@@ -239,7 +239,7 @@
                   />
                   <path
                     :class="{
-                      hidden: !showingNavigationDropdown,
+                      'tw-hidden': !showingNavigationDropdown,
                       'tw-inline-flex': showingNavigationDropdown,
                     }"
                     stroke-linecap="round"
@@ -256,10 +256,10 @@
         <!-- Responsive Navigation Menu -->
         <div
           :class="{
-            block: showingNavigationDropdown,
-            hidden: !showingNavigationDropdown,
+            'tw-block': showingNavigationDropdown,
+            'tw-hidden': !showingNavigationDropdown,
           }"
-          class="sm:hidden"
+          class="sm:tw-hidden"
         >
           <div class="tw-pt-2 tw-pb-3 tw-space-y-1">
             <jet-responsive-nav-link

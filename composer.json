@@ -52,10 +52,10 @@
             "@php artisan key:generate --ansi"
         ],
         "lint": [
-            "./vendor/bin/php-cs-fixer fix -vvv --dry-run --show-progress=dots --diff"
+            "./vendor/bin/php-cs-fixer --config=.php-cs-fixer.php fix -vvv --dry-run --show-progress=dots --diff"
         ],
         "lint:fix": [
-            "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots --diff"
+            "./vendor/bin/php-cs-fixer --config=.php-cs-fixer.php fix -vvv --show-progress=dots --diff"
         ]
     },
     "extra": {
