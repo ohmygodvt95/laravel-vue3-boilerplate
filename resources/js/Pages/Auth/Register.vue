@@ -24,7 +24,13 @@
 
       <div class="mt-4">
         <jet-label for="email" value="Email" />
-        <jet-input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required />
+        <jet-input
+          id="email"
+          v-model="form.email"
+          type="email"
+          class="mt-1 block w-full"
+          required
+        />
       </div>
 
       <div class="mt-4">
@@ -58,7 +64,10 @@
 
             <div class="ml-2">
               I agree to the
-              <a target="_blank" :href="route('terms.show')" class="underline text-sm text-gray-600 hover:text-gray-900"
+              <a
+                target="_blank"
+                :href="route('terms.show')"
+                class="underline text-sm text-gray-600 hover:text-gray-900"
                 >Terms of Service</a
               >
               and
@@ -78,7 +87,11 @@
           Already registered?
         </Link>
 
-        <jet-button class="ml-4" :class="{'opacity-25': form.processing}" :disabled="form.processing">
+        <jet-button
+          class="ml-4"
+          :class="{'opacity-25': form.processing}"
+          :disabled="form.processing"
+        >
           Register
         </jet-button>
       </div>

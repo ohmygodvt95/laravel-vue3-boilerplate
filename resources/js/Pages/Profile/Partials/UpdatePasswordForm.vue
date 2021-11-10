@@ -2,7 +2,9 @@
   <jet-form-section @submitted="updatePassword">
     <template #title> Update Password </template>
 
-    <template #description> Ensure your account is using a long, random password to stay secure. </template>
+    <template #description>
+      Ensure your account is using a long, random password to stay secure.
+    </template>
 
     <template #form>
       <div class="col-span-6 sm:col-span-4">
@@ -47,7 +49,9 @@
     <template #actions>
       <jet-action-message :on="form.recentlySuccessful" class="mr-3"> Saved. </jet-action-message>
 
-      <jet-button :class="{'opacity-25': form.processing}" :disabled="form.processing"> Save </jet-button>
+      <jet-button :class="{'opacity-25': form.processing}" :disabled="form.processing">
+        Save
+      </jet-button>
     </template>
   </jet-form-section>
 </template>

@@ -8,8 +8,8 @@
 
     <div class="mb-4 text-sm text-gray-600">
       <template v-if="!recovery">
-        Please confirm access to your account by entering the authentication code provided by your authenticator
-        application.
+        Please confirm access to your account by entering the authentication code provided by your
+        authenticator application.
       </template>
 
       <template v-else>
@@ -57,7 +57,11 @@
           <template v-else> Use an authentication code </template>
         </button>
 
-        <jet-button class="ml-4" :class="{'opacity-25': form.processing}" :disabled="form.processing">
+        <jet-button
+          class="ml-4"
+          :class="{'opacity-25': form.processing}"
+          :disabled="form.processing"
+        >
           Log in
         </jet-button>
       </div>

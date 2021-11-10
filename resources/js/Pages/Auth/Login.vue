@@ -15,7 +15,14 @@
     <form @submit.prevent="submit">
       <div>
         <jet-label for="email" value="Email" />
-        <jet-input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required autofocus />
+        <jet-input
+          id="email"
+          v-model="form.email"
+          type="email"
+          class="mt-1 block w-full"
+          required
+          autofocus
+        />
       </div>
 
       <div class="mt-4">
@@ -46,7 +53,11 @@
           Forgot your password?
         </Link>
 
-        <jet-button class="ml-4" :class="{'opacity-25': form.processing}" :disabled="form.processing">
+        <jet-button
+          class="ml-4"
+          :class="{'opacity-25': form.processing}"
+          :disabled="form.processing"
+        >
           Log in
         </jet-button>
       </div>

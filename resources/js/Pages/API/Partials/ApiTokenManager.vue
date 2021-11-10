@@ -12,7 +12,13 @@
         <!-- Token Name -->
         <div class="col-span-6 sm:col-span-4">
           <jet-label for="name" value="Name" />
-          <jet-input id="name" v-model="createApiTokenForm.name" type="text" class="mt-1 block w-full" autofocus />
+          <jet-input
+            id="name"
+            v-model="createApiTokenForm.name"
+            type="text"
+            class="mt-1 block w-full"
+            autofocus
+          />
           <jet-input-error :message="createApiTokenForm.errors.name" class="mt-2" />
         </div>
 
@@ -23,7 +29,10 @@
           <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="permission in availablePermissions" :key="permission">
               <label class="flex items-center">
-                <jet-checkbox v-model:checked="createApiTokenForm.permissions" :value="permission" />
+                <jet-checkbox
+                  v-model:checked="createApiTokenForm.permissions"
+                  :value="permission"
+                />
                 <span class="ml-2 text-sm text-gray-600">{{ permission }}</span>
               </label>
             </div>
@@ -32,9 +41,14 @@
       </template>
 
       <template #actions>
-        <jet-action-message :on="createApiTokenForm.recentlySuccessful" class="mr-3"> Created. </jet-action-message>
+        <jet-action-message :on="createApiTokenForm.recentlySuccessful" class="mr-3">
+          Created.
+        </jet-action-message>
 
-        <jet-button :class="{'opacity-25': createApiTokenForm.processing}" :disabled="createApiTokenForm.processing">
+        <jet-button
+          :class="{'opacity-25': createApiTokenForm.processing}"
+          :disabled="createApiTokenForm.processing"
+        >
           Create
         </jet-button>
       </template>
@@ -48,12 +62,18 @@
         <jet-action-section>
           <template #title> Manage API Tokens </template>
 
-          <template #description> You may delete any of your existing tokens if they are no longer needed. </template>
+          <template #description>
+            You may delete any of your existing tokens if they are no longer needed.
+          </template>
 
           <!-- API Token List -->
           <template #content>
             <div class="space-y-6">
-              <div v-for="token in tokens" :key="token.id" class="flex items-center justify-between">
+              <div
+                v-for="token in tokens"
+                :key="token.id"
+                class="flex items-center justify-between"
+              >
                 <div>
                   {{ token.name }}
                 </div>
@@ -71,7 +91,10 @@
                     Permissions
                   </button>
 
-                  <button class="cursor-pointer ml-6 text-sm text-red-500" @click="confirmApiTokenDeletion(token)">
+                  <button
+                    class="cursor-pointer ml-6 text-sm text-red-500"
+                    @click="confirmApiTokenDeletion(token)"
+                  >
                     Delete
                   </button>
                 </div>

@@ -14,7 +14,11 @@
 
         <!-- Current Profile Photo -->
         <div v-show="!photoPreview" class="mt-2">
-          <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-20 w-20 object-cover" />
+          <img
+            :src="user.profile_photo_url"
+            :alt="user.name"
+            class="rounded-full h-20 w-20 object-cover"
+          />
         </div>
 
         <!-- New Profile Photo Preview -->
@@ -30,7 +34,12 @@
           Select A New Photo
         </jet-secondary-button>
 
-        <jet-secondary-button v-if="user.profile_photo_path" type="button" class="mt-2" @click.prevent="deletePhoto">
+        <jet-secondary-button
+          v-if="user.profile_photo_path"
+          type="button"
+          class="mt-2"
+          @click.prevent="deletePhoto"
+        >
           Remove Photo
         </jet-secondary-button>
 
@@ -40,7 +49,13 @@
       <!-- Name -->
       <div class="col-span-6 sm:col-span-4">
         <jet-label for="name" value="Name" />
-        <jet-input id="name" v-model="form.name" type="text" class="mt-1 block w-full" autocomplete="name" />
+        <jet-input
+          id="name"
+          v-model="form.name"
+          type="text"
+          class="mt-1 block w-full"
+          autocomplete="name"
+        />
         <jet-input-error :message="form.errors.name" class="mt-2" />
       </div>
 
@@ -55,7 +70,9 @@
     <template #actions>
       <jet-action-message :on="form.recentlySuccessful" class="mr-3"> Saved. </jet-action-message>
 
-      <jet-button :class="{'opacity-25': form.processing}" :disabled="form.processing"> Save </jet-button>
+      <jet-button :class="{'opacity-25': form.processing}" :disabled="form.processing">
+        Save
+      </jet-button>
     </template>
   </jet-form-section>
 </template>
