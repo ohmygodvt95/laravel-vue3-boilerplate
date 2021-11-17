@@ -9,8 +9,8 @@
         "prod": "npm run production",
         "production": "mix --production",
         "lint": "node_modules/.bin/eslint --ext .js,.vue --fix --ignore-path .gitignore resources/ --quiet",
-        "prettify": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue} --check",
-        "prettify:php": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue} --check",
+        "prettify": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue}",
+        "prettify:php": "node_modules/.bin/prettier --write --ignore-path .gitignore app config database routes tests",
         "prepare": "husky install"
     },
     "devDependencies": {
@@ -53,11 +53,13 @@
     },
     "lint-staged": {
         "*.php": [
-            "composer lint:fix"
+            "composer lint:fix",
+            "yarn run prettify:php",
+            "git add --force"
         ],
         "*.{js,vue}": [
-            "yarn lint",
-            "yarn prettify"
+            "yarn run lint",
+            "yarn run prettify"
         ]
     },
     "dependencies": {

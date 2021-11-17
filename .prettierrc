@@ -12,7 +12,8 @@
       "options": {
         "tabWidth": 4,
         "bracketSpacing": true,
-        "phpVersion": "8.0"
+        "phpVersion": "8.0",
+        "printWidth": 80
       }
     }
   ]
