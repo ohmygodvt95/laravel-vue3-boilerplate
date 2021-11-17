@@ -10,12 +10,14 @@
         "production": "mix --production",
         "lint": "node_modules/.bin/eslint --ext .js,.vue --fix --ignore-path .gitignore resources/ --quiet",
         "prettify": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue} --check",
+        "prettify:php": "node_modules/.bin/prettier --write --ignore-path .gitignore resources/**/*.{js,vue} --check",
         "prepare": "husky install"
     },
     "devDependencies": {
         "@inertiajs/inertia": "^0.10.0",
         "@inertiajs/inertia-vue3": "^0.5.1",
         "@inertiajs/progress": "^0.2.6",
+        "@prettier/plugin-php": "^0.17.6",
         "@tailwindcss/forms": "^0.2.1",
         "@tailwindcss/typography": "^0.3.0",
         "@vue/compiler-sfc": "^3.0.5",

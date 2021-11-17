@@ -11,14 +11,14 @@ $rules = [
     'braces' => true,
     'cast_spaces' => true,
     'concat_space' => [
-        'spacing' => 'none',
+        'spacing' => 'one',
     ],
     'declare_equal_normalize' => true,
     'elseif' => true,
     'encoding' => true,
     'full_opening_tag' => true,
     'fully_qualified_strict_types' => true, // added by Shift
-    'function_declaration' => true,
+    'function_declaration' => false,
     'function_typehint_space' => true,
     'heredoc_to_nowdoc' => true,
     'include' => true,
@@ -35,11 +35,7 @@ $rules = [
     'native_function_casing' => true,
     'no_alias_functions' => true,
     'no_extra_blank_lines' => [
-        'tokens' => [
-            'extra',
-            'throw',
-            'use',
-        ],
+        'tokens' => ['extra', 'throw', 'use'],
     ],
     'no_blank_lines_after_class_opening' => true,
     'no_blank_lines_after_phpdoc' => true,
@@ -136,7 +132,15 @@ $rules = [
 
     // php-cs-fixer 3: Removed rootless options (*)
     'no_unneeded_control_parentheses' => [
-        'statements' => ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'],
+        'statements' => [
+            'break',
+            'clone',
+            'continue',
+            'echo_print',
+            'return',
+            'switch_case',
+            'yield',
+        ],
     ],
     'no_spaces_around_offset' => [
         'positions' => ['inside', 'outside'],
@@ -144,17 +148,16 @@ $rules = [
     'visibility_required' => [
         'elements' => ['property', 'method', 'const'],
     ],
-
 ];
 
 $finder = Finder::create()
     ->in([
-        __DIR__.'/app',
-        __DIR__.'/config',
-        __DIR__.'/database',
-        __DIR__.'/resources',
-        __DIR__.'/routes',
-        __DIR__.'/tests',
+        __DIR__ . '/app',
+        __DIR__ . '/config',
+        __DIR__ . '/database',
+        __DIR__ . '/resources',
+        __DIR__ . '/routes',
+        __DIR__ . '/tests',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
