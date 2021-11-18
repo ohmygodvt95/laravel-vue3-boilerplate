@@ -78,8 +78,11 @@ import JetButton from '@/Components/Molecules/Jetstream/Button.vue';
 import JetInput from '@/Components/Molecules/Jetstream/Input.vue';
 import JetLabel from '@/Components/Molecules/Jetstream/Label.vue';
 import JetValidationErrors from '@/Components/Molecules/Jetstream/ValidationErrors.vue';
+import BlankLayout from '@/Layouts/BlankLayout';
 
 export default defineComponent({
+  layout: BlankLayout,
+
   components: {
     Head,
     JetAuthenticationCard,

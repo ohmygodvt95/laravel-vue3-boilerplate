@@ -326,8 +326,11 @@
 import {defineComponent} from 'vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
 import {mapState, mapMutations} from '@/Hooks/useVuex';
+import BlankLayout from '@/Layouts/BlankLayout';
 
 export default defineComponent({
+  layout: BlankLayout,
+
   components: {
     Head,
     Link,

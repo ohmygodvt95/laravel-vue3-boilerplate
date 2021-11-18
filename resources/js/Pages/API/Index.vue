@@ -1,5 +1,5 @@
 <template>
-  <app-layout title="API Tokens">
+  <page title="API Tokens">
     <template #header>
       <h2 class="tw-font-semibold tw-text-xl tw-text-gray-800 tw-leading-tight">API Tokens</h2>
     </template>
@@ -13,18 +13,18 @@
         />
       </div>
     </div>
-  </app-layout>
+  </page>
 </template>
 
 <script>
 import {defineComponent} from 'vue';
 import ApiTokenManager from '@/Pages/API/Partials/ApiTokenManager.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Page from '@/Components/Templates/Page';
 
 export default defineComponent({
   components: {
     ApiTokenManager,
-    AppLayout,
+    Page,
   },
   props: ['tokens', 'availablePermissions', 'defaultPermissions'],
 });

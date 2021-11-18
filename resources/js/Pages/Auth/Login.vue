@@ -75,8 +75,11 @@ import JetCheckbox from '@/Components/Molecules/Jetstream/Checkbox.vue';
 import JetLabel from '@/Components/Molecules/Jetstream/Label.vue';
 import JetValidationErrors from '@/Components/Molecules/Jetstream/ValidationErrors.vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
+import BlankLayout from '@/Layouts/BlankLayout';
 
 export default defineComponent({
+  layout: BlankLayout,
+
   components: {
     Head,
     JetAuthenticationCard,

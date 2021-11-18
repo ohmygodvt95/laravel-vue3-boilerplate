@@ -30,7 +30,7 @@ export default defineComponent({
       default: false,
     },
     maxWidth: {
-      default: '2xl',
+      default: 'sm',
     },
     closeable: {
       default: true,

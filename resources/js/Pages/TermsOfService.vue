@@ -27,10 +27,10 @@
 import {defineComponent} from 'vue';
 import {Head} from '@inertiajs/inertia-vue3';
 import JetAuthenticationCardLogo from '@/Components/Molecules/Jetstream/AuthenticationCardLogo.vue';
-import DefaultLayout from '@/Layouts/DefaultLayout';
+import BlankLayout from '@/Layouts/BlankLayout';
 
 export default defineComponent({
-  layout: DefaultLayout,
+  layout: BlankLayout,
   components: {
     Head,
     JetAuthenticationCardLogo,

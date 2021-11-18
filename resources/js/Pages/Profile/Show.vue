@@ -1,5 +1,5 @@
 <template>
-  <app-layout title="Profile">
+  <page title="Profile">
     <template #header>
       <h2 class="tw-font-semibold tw-text-xl tw-text-gray-800 tw-leading-tight">Profile</h2>
     </template>
@@ -33,12 +33,12 @@
         </template>
       </div>
     </div>
-  </app-layout>
+  </page>
 </template>
 
 <script>
 import {defineComponent} from 'vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Page from '@/Components/Templates/Page';
 import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue';
 import JetSectionBorder from '@/Components/Molecules/Jetstream/SectionBorder.vue';
 import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue';
@@ -48,7 +48,7 @@ import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfile
 
 export default defineComponent({
   components: {
-    AppLayout,
+    Page,
     DeleteUserForm,
     JetSectionBorder,
     LogoutOtherBrowserSessionsForm,

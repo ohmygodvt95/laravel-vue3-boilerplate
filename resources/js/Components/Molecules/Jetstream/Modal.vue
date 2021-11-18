@@ -3,7 +3,8 @@
     <transition leave-active-class="tw-duration-200">
       <div
         v-show="show"
-        class="tw-fixed tw-inset-0 tw-overflow-y-auto tw-px-4 tw-py-6 sm:tw-px-0 tw-z-50"
+        class="tw-fixed tw-inset-0 tw-overflow-y-auto tw-px-4 tw-py-6 sm:tw-px-0"
+        style="z-index: 2001"
         scroll-region
       >
         <transition
@@ -41,7 +42,7 @@
               tw-shadow-xl
               tw-transform
               tw-transition-all
-              sm:tw-w-full sm:tw-mx-auto
+              sm:tw-w-1/3 sm:tw-mx-auto
             "
             :class="maxWidthClass"
           >
@@ -62,7 +63,7 @@ export default defineComponent({
       default: false,
     },
     maxWidth: {
-      default: '2xl',
+      default: 'sm',
     },
     closeable: {
       default: true,

@@ -40,8 +40,11 @@ import JetAuthenticationCard from '@/Components/Molecules/Jetstream/Authenticati
 import JetAuthenticationCardLogo from '@/Components/Molecules/Jetstream/AuthenticationCardLogo.vue';
 import JetButton from '@/Components/Molecules/Jetstream/Button.vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
+import BlankLayout from '@/Layouts/BlankLayout';
 
 export default defineComponent({
+  layout: BlankLayout,
+
   components: {
     Head,
     JetAuthenticationCard,

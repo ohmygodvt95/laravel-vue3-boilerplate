@@ -1,436 +1,187 @@
 <template>
-  <div>
-    <Head :title="title" />
+  <q-layout view="hHh lpR fFf" class="bg-grey-1">
+    <q-header elevated class="bg-white text-grey-8" height-hint="64">
+      <q-toolbar class="GNL__toolbar">
+        <q-btn
+          flat
+          dense
+          round
+          @click="toggleLeftDrawer"
+          aria-label="Menu"
+          icon="menu"
+          class="q-mr-sm"
+        />
 
-    <jet-banner />
+        <q-toolbar-title v-if="$q.screen.gt.xs" shrink class="row items-center no-wrap">
+          <span class="q-ml-sm">SmartOCR Extractor</span>
+        </q-toolbar-title>
 
-    <div class="tw-min-h-screen tw-bg-gray-100">
-      <nav class="tw-bg-white tw-border-b tw-border-gray-100">
-        <!-- Primary Navigation Menu -->
-        <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
-          <div class="tw-flex tw-justify-between tw-h-16">
-            <div class="tw-flex">
-              <!-- Logo -->
-              <div class="tw-flex-shrink-0 tw-flex tw-items-center">
-                <Link :href="route('dashboard')">
-                  <jet-application-mark class="tw-block tw-h-9 tw-w-auto" />
-                </Link>
-              </div>
+        <q-space />
 
-              <!-- Navigation Links -->
-              <div class="tw-hidden tw-space-x-8 sm:tw--my-px sm:tw-ml-10 sm:tw-flex">
-                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                  Dashboard
-                </jet-nav-link>
-              </div>
-            </div>
+        <div class="q-gutter-sm row items-center no-wrap">
+          <q-btn v-if="$q.screen.gt.sm" round dense flat color="text-grey-7" icon="apps">
+            <q-tooltip>Google Apps</q-tooltip>
+          </q-btn>
+          <q-btn round dense flat color="grey-8" icon="notifications">
+            <q-badge color="red" text-color="white" floating> 2 </q-badge>
+            <q-tooltip>Notifications</q-tooltip>
+          </q-btn>
+          <q-btn-dropdown flat fab>
+            <template v-slot:label>
+              <q-avatar size="26px">
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+              </q-avatar>
+              <q-tooltip>Account</q-tooltip>
+            </template>
+            <q-list>
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <Link :href="route('profile.show')">Profile</Link>
+                </q-item-section>
+              </q-item>
 
-            <div class="tw-hidden sm:tw-flex sm:tw-items-center sm:tw-ml-6">
-              <div class="tw-ml-3 tw-relative">
-                <!-- Teams Dropdown -->
-                <jet-dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
-                  <template #trigger>
-                    <span class="tw-inline-flex tw-rounded-md">
-                      <button
-                        type="button"
-                        class="
-                          tw-inline-flex
-                          tw-items-center
-                          tw-px-3
-                          tw-py-2
-                          tw-border
-                          tw-border-transparent
-                          tw-text-sm
-                          tw-leading-4
-                          tw-font-medium
-                          tw-rounded-md
-                          tw-text-gray-500
-                          tw-bg-white
-                          hover:tw-bg-gray-50 hover:tw-text-gray-700
-                          focus:tw-outline-none focus:tw-bg-gray-50
-                          active:tw-bg-gray-50
-                          tw-transition
-                        "
-                      >
-                        {{ $page.props.user.current_team.name }}
+              <q-item clickable v-close-popup v-if="$page.props.jetstream.hasApiFeatures">
+                <q-item-section>
+                  <Link
+                    :href="route('api-tokens.index')"
+                    :active="route().current('api-tokens.index')"
+                  >
+                    API Tokens
+                  </Link>
+                </q-item-section>
+              </q-item>
 
-                        <svg
-                          class="tw-ml-2 tw--mr-0.5 tw-h-4 tw-w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </template>
+              <q-item clickable v-close-popup @click="logout">
+                <q-item-section>
+                  <q-item-label>Log Out</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </div>
+      </q-toolbar>
+    </q-header>
 
-                  <template #content>
-                    <div class="tw-w-60">
-                      <!-- Team Management -->
-                      <template v-if="$page.props.jetstream.hasTeamFeatures">
-                        <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
-                          Manage Team
-                        </div>
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-white" :width="280">
+      <q-scroll-area class="fit tw-pt-3">
+        <q-list padding class="text-grey-8">
+          <q-item
+            class="GNL__drawer-item"
+            :class="route().current(link.routeName) ? 'tw-bg-gray-300' : ''"
+            v-ripple
+            v-for="link in links1"
+            :key="link.text"
+            clickable
+          >
+            <q-item-section avatar>
+              <q-icon :name="link.icon" />
+            </q-item-section>
+            <q-item-section>
+              <Link :href="route(link.routeName)">{{ link.text }}</Link>
+              <q-item-label></q-item-label>
+            </q-item-section>
+          </q-item>
 
-                        <!-- Team Settings -->
-                        <jet-dropdown-link
-                          :href="route('teams.show', $page.props.user.current_team)"
-                        >
-                          Team Settings
-                        </jet-dropdown-link>
+          <q-separator inset class="q-my-sm" />
 
-                        <jet-dropdown-link
-                          v-if="$page.props.jetstream.canCreateTeams"
-                          :href="route('teams.create')"
-                        >
-                          Create New Team
-                        </jet-dropdown-link>
+          <q-item
+            class="GNL__drawer-item"
+            v-ripple
+            v-for="link in links3"
+            :key="link.text"
+            clickable
+          >
+            <q-item-section>
+              <q-item-label
+                >{{ link.text }} <q-icon v-if="link.icon" :name="link.icon"
+              /></q-item-label>
+            </q-item-section>
+          </q-item>
 
-                        <div class="tw-border-t tw-border-gray-100"></div>
-
-                        <!-- Team Switcher -->
-                        <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
-                          Switch Teams
-                        </div>
-
-                        <template v-for="team in $page.props.user.all_teams" :key="team.id">
-                          <form @submit.prevent="switchToTeam(team)">
-                            <jet-dropdown-link as="button">
-                              <div class="tw-flex tw-items-center">
-                                <svg
-                                  v-if="team.id == $page.props.user.current_team_id"
-                                  class="tw-mr-2 tw-h-5 tw-w-5 tw-text-green-400"
-                                  fill="none"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <div>{{ team.name }}</div>
-                              </div>
-                            </jet-dropdown-link>
-                          </form>
-                        </template>
-                      </template>
-                    </div>
-                  </template>
-                </jet-dropdown>
-              </div>
-
-              <!-- Settings Dropdown -->
-              <div class="tw-ml-3 tw-relative">
-                <jet-dropdown align="right" width="48">
-                  <template #trigger>
-                    <button
-                      v-if="$page.props.jetstream.managesProfilePhotos"
-                      class="
-                        tw-flex tw-text-sm tw-border-2 tw-border-transparent tw-rounded-full
-                        focus:tw-outline-none focus:tw-border-gray-300
-                        tw-transition
-                      "
-                    >
-                      <img
-                        class="tw-h-8 tw-w-8 tw-rounded-full tw-object-cover"
-                        :src="$page.props.user.profile_photo_url"
-                        :alt="$page.props.user.name"
-                      />
-                    </button>
-
-                    <span v-else class="tw-inline-flex tw-rounded-md">
-                      <button
-                        type="button"
-                        class="
-                          tw-inline-flex
-                          tw-items-center
-                          tw-px-3
-                          tw-py-2
-                          tw-border
-                          tw-border-transparent
-                          tw-text-sm
-                          tw-leading-4
-                          tw-font-medium
-                          tw-rounded-md
-                          tw-text-gray-500
-                          tw-bg-white
-                          hover:tw-text-gray-700
-                          focus:tw-outline-none
-                          tw-transition
-                        "
-                      >
-                        {{ $page.props.user.name }}
-
-                        <svg
-                          class="tw-ml-2 tw--mr-0.5 tw-h-4 tw-w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </template>
-
-                  <template #content>
-                    <!-- Account Management -->
-                    <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
-                      Manage Account
-                    </div>
-
-                    <jet-dropdown-link :href="route('profile.show')"> Profile </jet-dropdown-link>
-
-                    <jet-dropdown-link
-                      v-if="$page.props.jetstream.hasApiFeatures"
-                      :href="route('api-tokens.index')"
-                    >
-                      API Tokens
-                    </jet-dropdown-link>
-
-                    <div class="tw-border-t tw-border-gray-100"></div>
-
-                    <!-- Authentication -->
-                    <form @submit.prevent="logout">
-                      <jet-dropdown-link as="button"> Log Out </jet-dropdown-link>
-                    </form>
-                  </template>
-                </jet-dropdown>
-              </div>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="tw--mr-2 tw-flex tw-items-center sm:tw-hidden">
-              <button
-                class="
-                  tw-inline-flex
-                  tw-items-center
-                  tw-justify-center
-                  tw-p-2
-                  tw-rounded-md
-                  tw-text-gray-400
-                  hover:tw-text-gray-500 hover:tw-bg-gray-100
-                  focus:tw-outline-none focus:tw-bg-gray-100 focus:tw-text-gray-500
-                  tw-transition
-                "
-                @click="showingNavigationDropdown = !showingNavigationDropdown"
+          <div class="q-mt-md">
+            <div class="flex flex-center q-gutter-xs">
+              <a class="GNL__drawer-footer-link" href="javascript:void(0)" aria-label="Privacy"
+                >Privacy</a
               >
-                <svg class="tw-h-6 tw-w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                  <path
-                    :class="{
-                      'tw-hidden': showingNavigationDropdown,
-                      'tw-inline-flex': !showingNavigationDropdown,
-                    }"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                  <path
-                    :class="{
-                      'tw-hidden': !showingNavigationDropdown,
-                      'tw-inline-flex': showingNavigationDropdown,
-                    }"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+              <span> · </span>
+              <a class="GNL__drawer-footer-link" href="javascript:void(0)" aria-label="Terms"
+                >Terms</a
+              >
+              <span> · </span>
+              <a class="GNL__drawer-footer-link" href="javascript:void(0)" aria-label="About"
+                >About Google</a
+              >
             </div>
           </div>
-        </div>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
 
-        <!-- Responsive Navigation Menu -->
-        <div
-          :class="{
-            'tw-block': showingNavigationDropdown,
-            'tw-hidden': !showingNavigationDropdown,
-          }"
-          class="sm:tw-hidden"
-        >
-          <div class="tw-pt-2 tw-pb-3 tw-space-y-1">
-            <jet-responsive-nav-link
-              :href="route('dashboard')"
-              :active="route().current('dashboard')"
-            >
-              Dashboard
-            </jet-responsive-nav-link>
-          </div>
-
-          <!-- Responsive Settings Options -->
-          <div class="tw-pt-4 tw-pb-1 tw-border-t tw-border-gray-200">
-            <div class="tw-flex tw-items-center tw-px-4">
-              <div
-                v-if="$page.props.jetstream.managesProfilePhotos"
-                class="tw-flex-shrink-0 tw-mr-3"
-              >
-                <img
-                  class="tw-h-10 tw-w-10 tw-rounded-full tw-object-cover"
-                  :src="$page.props.user.profile_photo_url"
-                  :alt="$page.props.user.name"
-                />
-              </div>
-
-              <div>
-                <div class="tw-font-medium tw-text-base tw-text-gray-800">
-                  {{ $page.props.user.name }}
-                </div>
-                <div class="tw-font-medium tw-text-sm tw-text-gray-500">
-                  {{ $page.props.user.email }}
-                </div>
-              </div>
-            </div>
-
-            <div class="tw-mt-3 tw-space-y-1">
-              <jet-responsive-nav-link
-                :href="route('profile.show')"
-                :active="route().current('profile.show')"
-              >
-                Profile
-              </jet-responsive-nav-link>
-
-              <jet-responsive-nav-link
-                v-if="$page.props.jetstream.hasApiFeatures"
-                :href="route('api-tokens.index')"
-                :active="route().current('api-tokens.index')"
-              >
-                API Tokens
-              </jet-responsive-nav-link>
-
-              <!-- Authentication -->
-              <form method="POST" @submit.prevent="logout">
-                <jet-responsive-nav-link as="button"> Log Out </jet-responsive-nav-link>
-              </form>
-
-              <!-- Team Management -->
-              <template v-if="$page.props.jetstream.hasTeamFeatures">
-                <div class="tw-border-t tw-border-gray-200"></div>
-
-                <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">Manage Team</div>
-
-                <!-- Team Settings -->
-                <jet-responsive-nav-link
-                  :href="route('teams.show', $page.props.user.current_team)"
-                  :active="route().current('teams.show')"
-                >
-                  Team Settings
-                </jet-responsive-nav-link>
-
-                <jet-responsive-nav-link
-                  v-if="$page.props.jetstream.canCreateTeams"
-                  :href="route('teams.create')"
-                  :active="route().current('teams.create')"
-                >
-                  Create New Team
-                </jet-responsive-nav-link>
-
-                <div class="tw-border-t tw-border-gray-200"></div>
-
-                <!-- Team Switcher -->
-                <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">Switch Teams</div>
-
-                <template v-for="team in $page.props.user.all_teams" :key="team.id">
-                  <form @submit.prevent="switchToTeam(team)">
-                    <jet-responsive-nav-link as="button">
-                      <div class="tw-flex tw-items-center">
-                        <svg
-                          v-if="team.id == $page.props.user.current_team_id"
-                          class="tw-mr-2 tw-h-5 tw-w-5 tw-text-green-400"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <div>{{ team.name }}</div>
-                      </div>
-                    </jet-responsive-nav-link>
-                  </form>
-                </template>
-              </template>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Page Heading -->
-      <header v-if="$slots.header" class="tw-bg-white tw-shadow">
-        <div class="tw-max-w-7xl tw-mx-auto tw-py-6 tw-px-4 sm:tw-px-6 lg:tw-px-8">
-          <slot name="header"></slot>
-        </div>
-      </header>
-
-      <!-- Page Content -->
-      <main>
-        <slot></slot>
-      </main>
-    </div>
-  </div>
+    <q-page-container>
+      <slot />
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import {defineComponent} from 'vue';
-import JetApplicationMark from '@/Components/Molecules/Jetstream/ApplicationMark.vue';
-import JetBanner from '@/Components/Molecules/Jetstream/Banner.vue';
-import JetDropdown from '@/Components/Molecules/Jetstream/Dropdown.vue';
-import JetDropdownLink from '@/Components/Molecules/Jetstream/DropdownLink.vue';
-import JetNavLink from '@/Components/Molecules/Jetstream/NavLink.vue';
-import JetResponsiveNavLink from '@/Components/Molecules/Jetstream/ResponsiveNavLink.vue';
-import {Head, Link} from '@inertiajs/inertia-vue3';
-
-export default defineComponent({
+import {ref} from 'vue';
+import {Link} from '@inertiajs/inertia-vue3';
+import {Inertia} from '@inertiajs/inertia';
+export default {
   components: {
-    Head,
-    JetApplicationMark,
-    JetBanner,
-    JetDropdown,
-    JetDropdownLink,
-    JetNavLink,
-    JetResponsiveNavLink,
     Link,
   },
-  props: {
-    title: String,
-  },
 
-  data() {
+  setup() {
+    const leftDrawerOpen = ref(false);
+    function toggleLeftDrawer() {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    }
+
+    function logout() {
+      Inertia.post(route('logout'));
+    }
     return {
-      showingNavigationDropdown: false,
+      leftDrawerOpen,
+      links1: [{icon: 'web', text: 'Dashboard', routeName: 'dashboard'}],
+      links2: [{icon: 'flag', text: 'Canada'}],
+      links3: [
+        {icon: '', text: 'Language & region'},
+        {icon: '', text: 'Settings'},
+        {icon: '', text: 'Send feedback'},
+        {icon: 'open_in_new', text: 'Help'},
+      ],
+      toggleLeftDrawer,
+      logout,
     };
   },
-
-  methods: {
-    switchToTeam(team) {
-      this.$inertia.put(
-        route('current-team.update'),
-        {
-          team_id: team.id,
-        },
-        {
-          preserveState: false,
-        },
-      );
-    },
-
-    logout() {
-      this.$inertia.post(route('logout'));
-    },
-  },
-});
+};
 </script>
+
+<style lang="sass">
+.GNL
+  &__toolbar
+    height: 64px
+  &__toolbar-input
+    width: 55%
+  &__drawer-item
+    line-height: 24px
+    border-radius: 0 24px 24px 0
+    margin-right: 12px
+    .q-item__section--avatar
+      .q-icon
+        color: #5f6368
+    .q-item__label
+      color: #3c4043
+      letter-spacing: .01785714em
+      font-size: .875rem
+      font-weight: 500
+      line-height: 1.25rem
+  &__drawer-footer-link
+    color: inherit
+    text-decoration: none
+    font-weight: 500
+    font-size: .75rem
+    &:hover
+      color: #000
+</style>
