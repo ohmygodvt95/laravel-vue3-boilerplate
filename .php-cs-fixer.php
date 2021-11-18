@@ -47,7 +47,7 @@ $rules = [
     'no_mixed_echo_print' => [
         'use' => 'echo',
     ],
-    'no_multiline_whitespace_around_double_arrow' => true,
+    'no_multiline_whitespace_around_double_arrow' => false,
     'multiline_whitespace_before_semicolons' => [
         'strategy' => 'no_multi_line',
     ],

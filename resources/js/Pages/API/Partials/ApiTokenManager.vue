@@ -187,19 +187,19 @@
 
 <script>
 import {defineComponent} from 'vue';
-import JetActionMessage from '@/Jetstream/ActionMessage.vue';
-import JetActionSection from '@/Jetstream/ActionSection.vue';
-import JetButton from '@/Jetstream/Button.vue';
-import JetConfirmationModal from '@/Jetstream/ConfirmationModal.vue';
-import JetDangerButton from '@/Jetstream/DangerButton.vue';
-import JetDialogModal from '@/Jetstream/DialogModal.vue';
-import JetFormSection from '@/Jetstream/FormSection.vue';
-import JetInput from '@/Jetstream/Input.vue';
-import JetCheckbox from '@/Jetstream/Checkbox.vue';
-import JetInputError from '@/Jetstream/InputError.vue';
-import JetLabel from '@/Jetstream/Label.vue';
-import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
-import JetSectionBorder from '@/Jetstream/SectionBorder.vue';
+import JetActionMessage from '@/Components/Molecules/Jetstream/ActionMessage.vue';
+import JetActionSection from '@/Components/Molecules/Jetstream/ActionSection.vue';
+import JetButton from '@/Components/Molecules/Jetstream/Button.vue';
+import JetConfirmationModal from '@/Components/Molecules/Jetstream/ConfirmationModal.vue';
+import JetDangerButton from '@/Components/Molecules/Jetstream/DangerButton.vue';
+import JetDialogModal from '@/Components/Molecules/Jetstream/DialogModal.vue';
+import JetFormSection from '@/Components/Molecules/Jetstream/FormSection.vue';
+import JetInput from '@/Components/Molecules/Jetstream/Input.vue';
+import JetCheckbox from '@/Components/Molecules/Jetstream/Checkbox.vue';
+import JetInputError from '@/Components/Molecules/Jetstream/InputError.vue';
+import JetLabel from '@/Components/Molecules/Jetstream/Label.vue';
+import JetSecondaryButton from '@/Components/Molecules/Jetstream/SecondaryButton.vue';
+import JetSectionBorder from '@/Components/Molecules/Jetstream/SectionBorder.vue';
 
 export default defineComponent({
   components: {

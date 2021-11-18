@@ -60,12 +60,12 @@
 
 <script>
 import {defineComponent} from 'vue';
-import JetActionMessage from '@/Jetstream/ActionMessage.vue';
-import JetButton from '@/Jetstream/Button.vue';
-import JetFormSection from '@/Jetstream/FormSection.vue';
-import JetInput from '@/Jetstream/Input.vue';
-import JetInputError from '@/Jetstream/InputError.vue';
-import JetLabel from '@/Jetstream/Label.vue';
+import JetActionMessage from '@/Components/Molecules/Jetstream/ActionMessage.vue';
+import JetButton from '@/Components/Molecules/Jetstream/Button.vue';
+import JetFormSection from '@/Components/Molecules/Jetstream/FormSection.vue';
+import JetInput from '@/Components/Molecules/Jetstream/Input.vue';
+import JetInputError from '@/Components/Molecules/Jetstream/InputError.vue';
+import JetLabel from '@/Components/Molecules/Jetstream/Label.vue';
 
 export default defineComponent({
   components: {

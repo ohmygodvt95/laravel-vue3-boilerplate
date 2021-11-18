@@ -88,11 +88,11 @@
 
 <script>
 import {defineComponent} from 'vue';
-import JetActionSection from '@/Jetstream/ActionSection.vue';
-import JetButton from '@/Jetstream/Button.vue';
-import JetConfirmsPassword from '@/Jetstream/ConfirmsPassword.vue';
-import JetDangerButton from '@/Jetstream/DangerButton.vue';
-import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
+import JetActionSection from '@/Components/Molecules/Jetstream/ActionSection.vue';
+import JetButton from '@/Components/Molecules/Jetstream/Button.vue';
+import JetConfirmsPassword from '@/Components/Molecules/Jetstream/ConfirmsPassword.vue';
+import JetDangerButton from '@/Components/Molecules/Jetstream/DangerButton.vue';
+import JetSecondaryButton from '@/Components/Molecules/Jetstream/SecondaryButton.vue';
 
 export default defineComponent({
   components: {

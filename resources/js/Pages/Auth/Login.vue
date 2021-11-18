@@ -67,13 +67,13 @@
 
 <script>
 import {defineComponent} from 'vue';
-import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue';
-import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue';
-import JetButton from '@/Jetstream/Button.vue';
-import JetInput from '@/Jetstream/Input.vue';
-import JetCheckbox from '@/Jetstream/Checkbox.vue';
-import JetLabel from '@/Jetstream/Label.vue';
-import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
+import JetAuthenticationCard from '@/Components/Molecules/Jetstream/AuthenticationCard.vue';
+import JetAuthenticationCardLogo from '@/Components/Molecules/Jetstream/AuthenticationCardLogo.vue';
+import JetButton from '@/Components/Molecules/Jetstream/Button.vue';
+import JetInput from '@/Components/Molecules/Jetstream/Input.vue';
+import JetCheckbox from '@/Components/Molecules/Jetstream/Checkbox.vue';
+import JetLabel from '@/Components/Molecules/Jetstream/Label.vue';
+import JetValidationErrors from '@/Components/Molecules/Jetstream/ValidationErrors.vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
 
 export default defineComponent({

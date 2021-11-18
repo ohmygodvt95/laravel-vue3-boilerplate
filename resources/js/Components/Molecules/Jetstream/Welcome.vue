@@ -171,7 +171,7 @@
 
 <script>
 import {defineComponent} from 'vue';
-import JetApplicationLogo from '@/Jetstream/ApplicationLogo.vue';
+import JetApplicationLogo from '@/Components/Molecules/Jetstream/ApplicationLogo.vue';
 
 export default defineComponent({
   components: {

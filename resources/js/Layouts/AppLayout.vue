@@ -386,12 +386,12 @@
 
 <script>
 import {defineComponent} from 'vue';
-import JetApplicationMark from '@/Jetstream/ApplicationMark.vue';
-import JetBanner from '@/Jetstream/Banner.vue';
-import JetDropdown from '@/Jetstream/Dropdown.vue';
-import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
-import JetNavLink from '@/Jetstream/NavLink.vue';
-import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue';
+import JetApplicationMark from '@/Components/Molecules/Jetstream/ApplicationMark.vue';
+import JetBanner from '@/Components/Molecules/Jetstream/Banner.vue';
+import JetDropdown from '@/Components/Molecules/Jetstream/Dropdown.vue';
+import JetDropdownLink from '@/Components/Molecules/Jetstream/DropdownLink.vue';
+import JetNavLink from '@/Components/Molecules/Jetstream/NavLink.vue';
+import JetResponsiveNavLink from '@/Components/Molecules/Jetstream/ResponsiveNavLink.vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
 
 export default defineComponent({
