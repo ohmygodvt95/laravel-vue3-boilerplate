@@ -83,6 +83,7 @@
 
             <div class="tw-ml-12">
               <div class="tw-mt-2 tw-text-gray-600 tw-dark:text-gray-400 tw-text-sm">
+                <q-btn @click="inc">Set store</q-btn> {{ count }}
                 Laravel has wonderful, thorough documentation covering every aspect of the
                 framework. Whether you are new to the framework or have previous experience with
                 Laravel, we recommend reading all of the documentation from beginning to end.
@@ -324,6 +325,7 @@
 <script>
 import {defineComponent} from 'vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
+import {mapState, mapMutations} from '@/Hooks/useVuex';
 
 export default defineComponent({
   components: {
@@ -336,6 +338,15 @@ export default defineComponent({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+  },
+
+  setup() {
+    const {count} = mapState('auth');
+    const {increment: inc} = mapMutations('auth');
+    return {
+      count,
+      inc,
+    };
   },
 });
 </script>

@@ -1,7 +1,9 @@
 <template>
   <app-layout title="Dashboard">
     <template #header>
-      <h2 class="tw-font-semibold tw-text-xl tw-text-gray-800 tw-leading-tight">Dashboard</h2>
+      <h2 class="tw-font-semibold tw-text-xl tw-text-gray-800 tw-leading-tight">
+        {{ $t('dashboard') }}
+      </h2>
     </template>
 
     <div class="tw-py-12">
